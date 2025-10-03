@@ -35,19 +35,21 @@ modelTree,model_rf,modelKnn,modelNN,modelSVM, labelencoder,variables,min_max_sca
 #Se crea interfaz gráfica con streamlit para captura de los datos
 
 import streamlit as st
+import pandas as pd
 
-st.title('Predicción de inversión en una tienda de videojuegos')
+st.title('Predicción basada en edad y tipo de carro')
 
-Edad = st.slider('Edad', min_value=14, max_value=52, value=20, step=1)
-videojuego = st.selectbox('Videojuego', ["'Mass Effect'","'Battlefield'", "'Fifa'","'KOA: Reckoning'","'Crysis'","'Sim City'","'Dead Space'","'F1'"])
-Plataforma = st.selectbox('Plataforma', ["'Play Station'", "'Xbox'","PC","Otros"])
-Sexo = st.selectbox('Sexo', ['Hombre', 'Mujer'])
-Consumidor_habitual = st.selectbox('Consumidor_habitual', ['True', 'False'])
+# Controles de entrada
+age = st.slider('Edad', min_value=0, max_value=100, value=20, step=1)
+cartype = st.selectbox('Tipo de Carro', ['combi', 'sport', 'family'])
 
+# Crear DataFrame
+datos = [[age, cartype]]
+data = pd.DataFrame(datos, columns=['age', 'cartype'])
 
-#Dataframe
-datos = [[Edad, videojuego,Plataforma,Sexo,Consumidor_habitual]]
-data = pd.DataFrame(datos, columns=['Edad', 'videojuego','Plataforma','Sexo','Consumidor_habitual']) #Dataframe con los mismos nombres de variables
+# Mostrar los datos capturados
+st.subheader('Datos capturados:')
+st.dataframe(data)
 
 #Se realiza la preparación debe ser igual al aprendizaje
 data_preparada=data.copy()
