@@ -22,7 +22,8 @@ import matplotlib.pyplot as plt #gráfica
 #Cargamos el modelo
 import pickle
 filename = 'modelo.pkl'
-modelo, min_max_scaler, variables = pickle.load(open(filename, 'rb'))
+modelTree,model_rf,modelKnn,modelNN,modelSVM, labelencoder,variables,min_max_scaler = pickle.load(open(filename, 'rb'))
+
 
 #Cargamos los datos futuros
 #data = pd.read_csv("videojuegos-datosFuturos.csv")
